@@ -117,15 +117,28 @@
     
     <div id="post0">
         <p>四月 07, 2022</p>
-        <h2><a href="/2022/04/07/Test3/" title="Test3" class="posttitle">Test3</a></h2>
-        <p class="summary">Test will be completed soon!
-</p>
+        <h2><a href="/2022/04/07/Test-mathjax/" title="Test-mathjax" class="posttitle">Test-mathjax</a></h2>
+        <p class="summary">Rikka is testing $latex$ !
+$a_1+\frac {1}{a_2+\frac{1}{a_...</p>
     </div>
     
 </div>
 
     <div id="primary">
         
+<div class="post">
+    <a href="/2022/04/07/Test3/" title="Test3">
+        <img src="https://cdn.luogu.com.cn/upload/image_hosting/va6ieys8.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>四月 07, 2022</p>
+        <h3><a href="/2022/04/07/Test3/" title="Test3" class="posttitle">Test3</a></h3>
+        <p>Test will be completed soon!
+</p>
+    </div>
+</div>
+
+
 <div class="post">
     <a href="/2022/04/07/Test2/" title="Test2">
         <img src="https://cdn.luogu.com.cn/upload/image_hosting/dvr0bkw5.png" class="cover" width="680" height="440">
@@ -158,6 +171,22 @@
 <div id="preview"></div>
 
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 
@@ -225,6 +254,25 @@
 </div>
 
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 
