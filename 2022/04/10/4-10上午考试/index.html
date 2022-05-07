@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>4/10上午考试 - Rikka的小窝</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Rikka,"> 
+    <meta name="description" content="T1 
+
+来源：不知道
+题意：
+　　两个人玩 ♂ 游戏，对于第 $i$ 次会在以 $i$ 为根的子树内两人分别选择一个点（不可重复）设为 $x , y$ ，得分为 $w_x \oplus  w_y​,"> 
+    <meta name="author" content="Rikka"> 
+    <link rel="alternative" href="atom.xml" title="Rikka的小窝" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="4/10上午考试 - Rikka的小窝"/>
+    <meta name="twitter:description" content="T1 
+
+来源：不知道
+题意：
+　　两个人玩 ♂ 游戏，对于第 $i$ 次会在以 $i$ 为根的子树内两人分别选择一个点（不可重复）设为 $x , y$ ，得分为 $w_x \oplus  w_y​,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Rikka的小窝"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="4/10上午考试 - Rikka的小窝"/>
+    <meta property="og:description" content="T1 
+
+来源：不知道
+题意：
+　　两个人玩 ♂ 游戏，对于第 $i$ 次会在以 $i$ 为根的子树内两人分别选择一个点（不可重复）设为 $x , y$ ，得分为 $w_x \oplus  w_y​,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Rikka的小窝</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://Takanashi-Toka.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">4/10上午考试</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">4/10上午考试</h1>
+        <div class="stuff">
+            <span>四月 10, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Exam/" rel="tag">-Exam</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <center><font size = 6>T1 </font></center>
+
+<p>来源：不知道</p>
+<p>题意：</p>
+<p>　　两个人玩 ♂ 游戏，对于第 $i$ 次会在以 $i$ 为根的子树内两人分别选择一个点（不可重复）设为 $x , y$ ，得分为 $w_x \oplus  w_y​$。A 要求最小化得分，B 要求最大化得分，在两人都<del>秃头</del>绝顶聪明的情况下，求出每次游戏的得分。</p>
+<p>题解：</p>
+<p>　　如果只算一颗子树，考虑异或的性质，高位肯定比低位优，可以把用一颗 Trie 树表示出这棵子树内的所有数字并在 Trie 上进行 DP，对于 Trie 上一个点 ，如果它的子树里面总共只表示了一个数字（重复算两个）则答案为 -1 。</p>
+<p>如果它的左子树或者右子树中只有一个数字，那么只要A走进这个只有一个数字的子树 B 就必须走另一个，这时的对答案的贡献最大，否则这个点的答案就是左右子树的答案中较大的，因为如果 A 选择走进答案较大的子树 B 就要跟进去。<br>如果要计算多个子树的答案，只需要从下向上进行 Trie 树合并，合并的同时根据上面的方法维护答案即可。</p>
+<p>Code：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Written by Rikka__  */</span></span><br><span class="line"><span class="comment">/* 手持两把锟斤拷，口中疾呼烫烫烫   */</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _ =read()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> r = <span class="number">0</span> , w = <span class="number">1</span>;</span><br><span class="line">	<span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch &gt; <span class="string">&#x27;9&#x27;</span> || ch &lt; <span class="string">&#x27;0&#x27;</span>) &#123;<span class="keyword">if</span>(ch == <span class="string">&#x27;-&#x27;</span>) w = <span class="number">-1</span>; ch = <span class="built_in">getchar</span>();&#125; </span><br><span class="line">	<span class="keyword">while</span>(ch &gt;=<span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;=<span class="string">&#x27;9&#x27;</span>) &#123;r = r * <span class="number">10</span> + ch -<span class="string">&#x27;0&#x27;</span>; ch = <span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">return</span> r * w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> FileIO&#123;</span><br><span class="line">	string InFile;</span><br><span class="line">	string OutFile;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">File</span><span class="params">(string s)</span></span>&#123;</span><br><span class="line">		InFile = s + <span class="string">&quot;.in&quot;</span>;</span><br><span class="line">		OutFile = s + <span class="string">&quot;.out&quot;</span>;</span><br><span class="line">		<span class="built_in">freopen</span>(InFile.<span class="built_in">data</span>() , <span class="string">&quot;r&quot;</span> , stdin);</span><br><span class="line">		<span class="built_in">freopen</span>(OutFile.<span class="built_in">data</span>() , <span class="string">&quot;w&quot;</span> , stdout);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> Maxn = <span class="number">201010</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Vollerei</span>&#123;</span><br><span class="line">	<span class="type">int</span> to;</span><br><span class="line">	<span class="type">int</span> nxt;</span><br><span class="line">&#125;;</span><br><span class="line">Vollerei *ed[Maxn &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> ecnt;</span><br><span class="line"><span class="type">int</span> head[Maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x , <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">	ed[++ecnt] = <span class="keyword">new</span> Vollerei;</span><br><span class="line">	ed[ecnt]-&gt;to = y;	</span><br><span class="line">	ed[ecnt]-&gt;nxt = head[x];</span><br><span class="line">	head[x] = ecnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Trie&#123;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">		<span class="type">int</span> siz;</span><br><span class="line">		<span class="type">int</span> val;</span><br><span class="line">		node *l;</span><br><span class="line">		node *r;</span><br><span class="line">	&#125;;</span><br><span class="line">	node tr[<span class="number">2000010</span>];</span><br><span class="line">	node *cnt = tr;</span><br><span class="line">	node *rt[Maxn];</span><br><span class="line">	<span class="function">node* <span class="title">Newnode</span><span class="params">(<span class="type">int</span> x , <span class="type">int</span> dep = <span class="number">17</span>)</span></span>&#123;</span><br><span class="line">		node *cur = cnt++;</span><br><span class="line">        cur-&gt;siz = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(dep == <span class="number">0</span>) <span class="keyword">return</span> cur;</span><br><span class="line">		<span class="type">int</span> num = (x &gt;&gt; dep - <span class="number">1</span> &amp; <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(num == <span class="number">0</span>) cur-&gt;l = <span class="built_in">Newnode</span>(x , dep - <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">else</span> cur-&gt;r = <span class="built_in">Newnode</span>(x , dep - <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">return</span> cur;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">find</span><span class="params">(node *x , node *y , <span class="type">int</span> dep)</span></span>&#123;</span><br><span class="line">		<span class="type">int</span> s = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>( ; dep ; dep--)&#123;</span><br><span class="line">			<span class="type">int</span> num = !(x-&gt;l);</span><br><span class="line">			<span class="keyword">if</span>(num == <span class="number">0</span>) x = x-&gt;l;</span><br><span class="line">			<span class="keyword">else</span> x = x-&gt;r;</span><br><span class="line">			<span class="keyword">if</span>(num == <span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(y-&gt;l) y = y-&gt;l;</span><br><span class="line">				<span class="keyword">else</span> s |= <span class="number">1</span> &lt;&lt; dep - <span class="number">1</span> , y = y-&gt;r;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(y-&gt;r) y = y-&gt;r;</span><br><span class="line">                <span class="keyword">else</span> s |= <span class="number">1</span> &lt;&lt; dep - <span class="number">1</span> , y = y-&gt;l;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">node* <span class="title">merge</span><span class="params">(node *x , node *y , <span class="type">int</span> dep = <span class="number">17</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x == <span class="literal">nullptr</span>) <span class="keyword">return</span> y;</span><br><span class="line">        <span class="keyword">if</span>(y == <span class="literal">nullptr</span>) <span class="keyword">return</span> x;</span><br><span class="line">        x-&gt;siz += y-&gt;siz;</span><br><span class="line">        <span class="keyword">if</span>(dep == <span class="number">0</span>) <span class="keyword">return</span> x;</span><br><span class="line">        x-&gt;l = <span class="built_in">merge</span>(x-&gt;l , y-&gt;l , dep - <span class="number">1</span>);</span><br><span class="line">        x-&gt;r = <span class="built_in">merge</span>(x-&gt;r , y-&gt;r , dep - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(x-&gt;l == <span class="literal">nullptr</span>) x-&gt;val = x-&gt;r-&gt;val;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(x-&gt;r == <span class="literal">nullptr</span>) x-&gt;val = x-&gt;l-&gt;val;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(x-&gt;l-&gt;siz == <span class="number">1</span>) x-&gt;val = <span class="number">1</span> &lt;&lt; dep - <span class="number">1</span> | <span class="built_in">find</span>(x-&gt;l , x-&gt;r , dep - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(x-&gt;r-&gt;siz == <span class="number">1</span>) x-&gt;val = <span class="number">1</span> &lt;&lt; dep - <span class="number">1</span> | <span class="built_in">find</span>(x-&gt;r , x-&gt;l , dep - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> x-&gt;val = <span class="built_in">max</span>(x-&gt;l-&gt;val , x-&gt;r-&gt;val);</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Trie;</span><br><span class="line"><span class="type">int</span> ans[Maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x , <span class="type">int</span> fa)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = head[x] ; i ; i = ed[i]-&gt;nxt)&#123;</span><br><span class="line">        <span class="type">int</span> to = ed[i]-&gt;to;</span><br><span class="line">        <span class="keyword">if</span>(to == fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(to , x);</span><br><span class="line">        rt[x] = <span class="built_in">merge</span>(rt[x] , rt[to]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(rt[x]-&gt;siz &lt; <span class="number">2</span>) ans[x] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">else</span> ans[x] = rt[x]-&gt;val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//FileIO::File(&quot;game&quot;);</span></span><br><span class="line">    n _;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt;= n ; i++)&#123;</span><br><span class="line">        <span class="type">int</span> x _;</span><br><span class="line">        rt[i] = <span class="built_in">Newnode</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt; n ; i++)&#123;</span><br><span class="line">        <span class="type">int</span> x _ , y _;</span><br><span class="line">        <span class="built_in">add</span>(x , y) , <span class="built_in">add</span>(y , x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span> , <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt;= n ; i++) cout &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<center> <font size=6>T2 </font></center>
+
+<p>来源：不知道</p>
+<p>题意：</p>
+<p>　　给定若干 $n$ 元一次同余方程求出一组解满足尽量多的方程。</p>
+<p>题解：</p>
+<p>　　观察数据：</p>
+<p>　　　　1.只有一个未知数而且模数相同，直接枚举。</p>
+<p>　　　　2.未知数和方程都是 50 个，发现模数都是质数的幂的形式而且互质，直接大力 CRT合并就行。</p>
+<p>　　　　3.未知数和方程有 300 个，但是模数相同而且为 $10^9+7$ 直接大力高斯消元。</p>
+<p>　　　　4.发现对于每个未知数只有两种选择，而且得到 10 分的标准要恰好满足其中之一，直接 $2^n$ 枚举检验就行。</p>
+<p>　　　　5.模数相同，且模数为若干质数的乘积（$2\times3\times5\times7\times11\times13\times17\times19\times23 =223092870$ ，直接对于每个因子高斯消元最后 CRT 合并就行了。</p>
+<p>　　　　6.模数不同，但是模数的质因子最大只有 200，对于 200 以下的质数分别进行高斯消元然后CRT合并。</p>
+<p>　　　　7.模数相同而且比较小，上面的方程的权重比较大，所以优先满足上面的，下面的方程对于每个数有三种取值，直接 dp 就行。</p>
+<p>　　　　8.和 6 一样。</p>
+<p>　　　　9.送分的，求个众数就行。</p>
+<p>　　　　10.比较玄学，题解上是暴力搜索 64 个比较好搜的，对于剩下 26 个使用状压 dp 求解。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="830590207921a086ff97"
+        data-cs="ea4c1034837397acc6396497008e272dd7ec77e9"
+        data-r="Blog-talk"
+        data-o="Takanashi-Toka"
+        data-a="Takanashi-Toka"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

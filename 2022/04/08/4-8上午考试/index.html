@@ -82,13 +82,13 @@
 <p>　　　　2.将当前串复制一份并反接在后面。（AAAB $\rightarrow $ AAABBAAA）</p>
 <p>　　多次询问给定一个字符串，最少能用多少次操作得到这个字符串。</p>
 <p>题解：</p>
-<p>　　PAM 的板题， 首先可以发现操作 2 越多越好，但是发现操作 2 只能得到长度为偶数的回文串，所以答案其实就是 <strong>在一个长度为偶数的回文串的基础上暴力添加一个字符</strong> 。</p>
+<p>　　PAM 的板题， 首先可以发现操作 2 越多越好，但是发现操作 2 只能得到长度为偶数的回文串，所以答案其实就是 <strong>在一个长度为偶数的回文串的基础上暴力添加字符</strong> 。</p>
 <p>　　于是我们对于每次询问的串建立 PAM，设 $dp_x$ 表示得到节点 $x$ 所代表的回文串的最小操作次数，$Len_x$ 为节点 $x$ 所代表的的回文串的长度，$n$ 为询问串的长度，那么答案其实就是 $min\left \{ dp_x + n -Len_x\right\}$ 。</p>
 <p>　　首先对于 $dp$ 数组的转移，有：</p>
 <p>　　　　设 $S_x$ 为 $x$ 节点代表的回文串。  </p>
-<p>　　　　若在 PAM 上存在一条 $u \rightarrow v$ 的转移边（即在 $S_x $ 开头和末尾添加一个相同字符能得到 $S_v$），那么就有转移： $dp_v = min(dp_v , dp_x+1)$ 。</p>
-<p>　　　　证明：先构造 $S_u​$ 的一半，再在开头添加一个对应字符，在通过操作 2 得到 $Sv​$</p>
-<p>　　　　我们发现回文串可能由自己的一半转移过来，因此我们在PAM上面利用 $fail​$ 维护一个 $tran​$ 指针， 表示<strong>长度不超过当前回文串一半的最长回文串对应的节点</strong>。（具体看代码）</p>
+<p>　　　　若在 PAM 上存在一条 $u \rightarrow v$ 的转移边（即在 $S_x $ 开头和末尾添加一个相同字符能得到 $S_v$），那么就有转移： $dp_v = min(dp_v , dp_u+1)$ 。</p>
+<p>　　　　证明：先构造 $S_u$ 的一半，再在开头添加一个对应字符，在通过操作 2 得到 $Sv$ ，操作次数： $dp_u - 1 + 1 + 1= dp_u + 1$</p>
+<p>　　　　我们发现回文串可能由自己的一半转移过来，因此我们在PAM上面利用 $fail$ 维护一个 $tran$ 指针， 表示<strong>长度不超过当前回文串一半的最长回文串对应的节点</strong>。（具体看代码）</p>
 <p>　　我们设 $y = tran_x​$ 那么可以得到转移：$ dp_x = min(dp_x , dp_y + \frac{Len_x} {2} - Len_y + 1)​$ 。</p>
 <p>　　直接从根开始 BFS 转移就行了，复杂度 $O(\sum|S|)$。</p>
 <p>Code：</p>
@@ -153,11 +153,11 @@
     <div id="gitalk-container" class="comment link"
 		data-enable="true"
         data-ae="false"
-        data-ci=""
-        data-cs=""
-        data-r=""
-        data-o=""
-        data-a=""
+        data-ci="830590207921a086ff97"
+        data-cs="ea4c1034837397acc6396497008e272dd7ec77e9"
+        data-r="Blog-talk"
+        data-o="Takanashi-Toka"
+        data-a="Takanashi-Toka"
         data-d="false"
     >查看评论</div>
 
